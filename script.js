@@ -6,6 +6,9 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 
 // Modal window
 const openModal = function (e) {
@@ -44,4 +47,26 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
+});
+
+///////////////////////////////////////
+// Tabbed component
+
+tabsContainer.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  tabs.forEach(function (el) {
+    el.classList.remove('operations__tab--active');
+  });
+  tabsContent.forEach(function (el) {
+    el.classList.remove('operations__content--active');
+  });
+
+  const tabNumber = e.target.dataset.tab;
+  document
+    .querySelector(`.operations__tab--${tabNumber}`)
+    .classList.add('operations__tab--active');
+  document
+    .querySelector(`.operations__content--${tabNumber}`)
+    .classList.add('operations__content--active');
 });
