@@ -53,20 +53,20 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 // Tabbed component
 
 tabsContainer.addEventListener('click', function (e) {
-  e.preventDefault();
+  const clicked = e.target.closest('.operations__tab');
 
-  tabs.forEach(function (el) {
-    el.classList.remove('operations__tab--active');
-  });
-  tabsContent.forEach(function (el) {
-    el.classList.remove('operations__content--active');
-  });
+  // Guard clause
+  if (!clicked) return;
 
-  const tabNumber = e.target.dataset.tab;
+  // Remove active classes
+  tabs.forEach((t) => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach((c) => c.classList.remove('operations__content--active'));
+
+  // Activate tab
+  clicked.classList.add('operations__tab--active');
+
+  // Activate content area
   document
-    .querySelector(`.operations__tab--${tabNumber}`)
-    .classList.add('operations__tab--active');
-  document
-    .querySelector(`.operations__content--${tabNumber}`)
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
