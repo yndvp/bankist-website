@@ -9,6 +9,7 @@ const section1 = document.querySelector('#section--1');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+const nav = document.querySelector('.nav');
 
 // Modal window
 const openModal = function (e) {
@@ -51,7 +52,6 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 
 ///////////////////////////////////////
 // Tabbed component
-
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
 
@@ -88,3 +88,11 @@ const handleHover = function (e) {
 
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+///////////////////////////////////////
+// Sticky navigation
+window.addEventListener('scroll', function () {
+  const section1TopCoords = section1.getBoundingClientRect().top;
+  if (section1TopCoords <= 0) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
