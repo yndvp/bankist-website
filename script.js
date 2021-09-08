@@ -36,11 +36,13 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+///////////////////////////////////////
 // Button scrolling
 btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+///////////////////////////////////////
 // Page navigation
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
